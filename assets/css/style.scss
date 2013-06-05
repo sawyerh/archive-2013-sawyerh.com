@@ -1,0 +1,775 @@
+@import 'normalize';
+@import 'mixins';
+
+// SASS Variables
+// ==================================================================
+
+$futura: "futura-pt";
+$tisa: "ff-tisa-web-pro";
+$tisa_sans: "ff-tisa-sans-web-pro";
+
+$lightGrey: #e3e3e3;
+$bgColor: #fcfcfa;
+$textColor: #1c1c1b;
+$borderColor: #d1d0cf;
+$red: #f50a20;
+
+html{
+  overflow-x: hidden;
+}
+
+body{
+  background: $bgColor;
+  font-family: $tisa;
+  line-height: 1;
+}
+
+h1, h2, h3{
+  font-weight: bold;
+  font-family: $futura;
+  line-height: 1.3;
+}
+
+img, video, embed, audio{
+  max-width: 100%;
+}
+
+::selection{
+  background: #000;
+  color: #fff;
+  text-shadow: none;
+}
+
+a{
+  color: #000;
+
+  &:hover{
+    color: $red;
+    text-decoration: none;
+  }
+}
+
+// Navigation
+// ==================================================================
+$navBreakpoint: 560px;
+
+// Global
+// +++++++++++++++++++++++++++++++++
+.nav-item{
+  color: $lightGrey;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+
+  &.is-current{
+    color: #000;
+  }
+
+  &:hover{
+    color: $red;
+  }
+}
+
+.nav-home{
+  font-family: $futura;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+// Small (default)
+// +++++++++++++++++++++++++++++++++
+@include max-width($navBreakpoint - 1){
+  body{
+    padding-top: 100px;
+  }
+
+  nav.primary{
+    box-shadow: 0 3px 7px rgba(#000, 0.15);
+    background: #f7f7f5;
+    position: fixed;
+    text-align: center;
+    left: 0;
+    width: 100%;
+    top: 0;
+  }
+
+  .nav-item{
+    padding: 20px 20px 10px;
+  }
+
+  .nav-home{
+    position: relative;
+    top: -5px;
+  }
+}
+
+// Medium+
+// +++++++++++++++++++++++++++++++++
+@include min-width($navBreakpoint){
+
+  .nav-item{
+    @include transition(all 200ms ease);
+    position: absolute;
+    position: fixed;
+    padding: 30px;
+    min-width: 36px;
+    max-width: 100px;
+    z-index: 10;
+
+    &:not(.is-current).is-highlighted{
+      color: transparent;
+      text-shadow: 0 0 5px darken($lightGrey, 15%);
+    }
+
+    &:not(.is-current):hover{
+      background-color: #000;
+      color: $bgColor;
+      text-shadow: none;
+    }
+  }
+
+  .nav-home{
+    left: 0;
+    top: 0;
+  }
+
+  .nav-photos{
+    right: 0;
+    top: 0;
+    text-align: right;
+  }
+
+  .nav-writing{
+    right: 0;
+    bottom: 0;
+  }
+
+  .nav-about{
+    left: 0;
+    bottom: 0;
+    text-align: right;
+  }
+}
+
+// Home (portfolio)
+// ==================================================================
+
+// Intro animation
+// +++++++++++++++++++++++++++++++++
+#home-intro{
+  @include animation(homeIntro 2s ease both);
+  @include box-sizing(border-box);
+  font-size: 64px;
+  font-family: $futura;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: -2px;
+  position: fixed;
+  left: 0;
+  min-width: 100%;
+  top: 50%;
+  margin-top: -64px + -30;
+  padding: 30px;
+  pointer-events: none;
+}
+
+@-webkit-keyframes homeIntro{
+  0%{
+    opacity: 0;
+  }
+
+  45%{
+    opacity: 1;
+  }
+
+  65%{
+    opacity: 1;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes homeIntro{
+  0%{
+    opacity: 0;
+  }
+
+  45%{
+    opacity: 1;
+  }
+
+  65%{
+    opacity: 1;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}
+
+@keyframes homeIntro{
+  0%{
+    opacity: 0;
+  }
+
+  45%{
+    opacity: 1;
+  }
+
+  65%{
+    opacity: 1;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}
+
+// Portfolio animation
+// +++++++++++++++++++++++++++++++++
+.portfolio{
+  @include animation(showPortfolio 4s ease both);
+}
+
+@-webkit-keyframes showPortfolio{
+  0%{
+    opacity: 0;
+  }
+
+  45%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes showPortfolio{
+  0%{
+    opacity: 0;
+  }
+
+  50%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes showPortfolio{
+  0%{
+    opacity: 0;
+  }
+
+  50%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+// Small
+// +++++++++++++++++++++++++++++++++
+@include max-width($navBreakpoint - 1){
+  .p-item-outer-wrap{
+    margin-bottom: 30px;
+    padding: 0 30px 30px;
+    text-align: center;
+
+    &:last-of-type{
+      padding-bottom: 0;
+    }
+  }
+
+  .p-item{
+    margin-bottom: 15px;
+  }
+
+  .p-info-wrap{
+    max-width: 100%;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 21px;
+
+    p{
+      margin: 0;
+    }
+  }
+
+  .p-info-hide, .p-info-toggle, .p-permalink{
+    display: none;
+  }
+}
+
+// Medium+
+// +++++++++++++++++++++++++++++++++
+@include min-width($navBreakpoint){ // change in JS too
+
+  .portfolio{
+    padding: 60px 0 100px;
+    text-align: center;
+    position: relative;
+
+    img{
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .no-click img{
+      cursor: auto;
+    }
+  }
+
+  .p-item-outer-wrap{
+    position: relative;
+    margin: 0 0 130px;
+    padding: 0 100px;
+    overflow: hidden;
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+
+    &:hover{
+      .p-info-toggle{
+        opacity: 1;
+      }
+      .p-permalink{
+        left: 0;
+      }
+      .p-info-toggle{
+        right: 0;
+      }
+    }
+  }
+
+  .portfolio-item-wrap{
+    position: relative;
+    min-height: 670px;
+  }
+
+  .p-item{
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+
+    &.is-front{
+      z-index: 2;
+    }
+  }
+
+  .p-permalink, .p-info-toggle{
+    @include transition("opacity 300ms ease, left 0.5s ease, right 0.5s ease");
+    position: absolute;
+    padding: 30px;
+    left: -60px;
+    top: 50%;
+    margin-top: (36px + 30px) * -1;
+    font-size: 36px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0;
+
+    &:hover{
+      color: $red;
+    }
+  }
+
+  .p-info-toggle{
+    left: auto;
+    right: -60px
+  }
+
+  .p-info-hide{
+    @include transition(all 200ms ease);
+    cursor: pointer;
+    display: inline-block;
+    padding: 15px;
+    font-size: 36px;
+    color: $red;
+    line-height: 1;
+
+    &:hover{
+      @include transform(scale(1.3));
+    }
+  }
+
+  .p-info-wrap{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba($bgColor, 0.95);
+    z-index: 3;
+    display: none;
+  }
+
+  .p-info-table{
+    display: table;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+  }
+
+  .p-info{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 1.5;
+
+    p{
+      max-width: 350px;
+      margin: auto;
+    }
+  }
+
+  .p-pocket-2012{
+    img{
+      max-width: 400px;
+    }
+  }
+
+  // poster
+  // +++++++++++++++++++++++++++++++++
+  .p-poster-1{
+    @include transform(translate(9%, -7%));
+  }
+
+  .p-poster-portrait{
+    margin: 0 7%;
+  }
+
+  .p-poster-portrait-2{
+    @include transform(translate(-7%, 25%));
+  }
+
+
+
+  // Web + mobile preview
+  // +++++++++++++++++++++++++++++++++
+  .p-web-mobile{
+    margin: 7% 4% 0 0;
+  }
+
+  .p-web-mobile-2{
+    @include transform(translate(4%, 7%));
+  }
+
+}
+
+
+// Writing - List of articles
+// ==================================================================
+
+.writing-list{
+  margin: 96px 30px;
+  text-align: center;
+
+  @include max-width(560px){
+    margin-top: 30px;
+  }
+
+  article{
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid $borderColor;
+
+    @include max-width(700px){
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+    }
+
+    &:last-child{
+      border-bottom: 0 none;
+    }
+  }
+
+  h1{
+    font-size: 64px;
+    font-family: $futura;
+    text-transform: uppercase;
+    max-width: 900px;
+    padding: 0 100px;
+    margin: 0 auto;
+
+    a{
+      display: block;
+    }
+
+    @include max-width(900px){
+      font-size: 50px;
+    }
+
+    @include max-width(700px){
+      font-size: 36px;
+    }
+
+    @include max-width(560px){
+      font-size: 24px;
+      padding: 0;
+    }
+  }
+
+  a{
+    @include transition(color 205ms ease);
+    color: $textColor;
+    text-decoration: none;
+
+    &:hover{
+      color: $red;
+    }
+  }
+}
+
+.tags{
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 300;
+
+  a{
+    color: lighten($textColor, 50%);
+  }
+
+  li{
+    display: inline-block;
+
+    &:after{
+      content: '/';
+      color: lighten($textColor, 50%);
+    }
+
+    &:last-child:after{
+      content: '';
+    }
+  }
+}
+
+.single-post-title{
+  margin-top: 0;
+  font-size: 60px;
+  line-height: 1.1;
+
+  @include max-width(560px){
+    font-size: 40px;
+  }
+}
+
+.single-post{
+  @include antialias;
+  max-width: 700px;
+  margin: 30px auto 0;
+  padding: 0 150px 150px;
+  font-size: 18px;
+
+  @include min-width(720px){
+    margin-top: 100px;
+  }
+
+  @include max-width(720px){
+    font-size: 20px;
+  }
+
+  @include max-width(560px){
+    padding: 0 100px 100px;
+    font-size: 18px;
+  }
+
+  .note{
+    background: #eee;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  h1, h2{
+    margin-left: -30px;
+  }
+
+  h2{
+    font-size: 36px;
+    margin: 2em -30px 1em;
+
+    @include max-width(560px){
+      font-size: 28px;
+    }
+  }
+
+  @include max-width(480px){
+    padding: 0 0 100px;
+    width: 90%;
+
+    h1, h2{
+      margin-left: 0;
+    }
+  }
+}
+
+.single-post-content{
+  line-height: 1.5;
+  margin-bottom: 1.5;
+}
+
+.gist{
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.post-thumb{
+  margin-bottom: 30px;
+
+  img{
+    height: auto !important;
+  }
+}
+
+// About me
+// ==================================================================
+
+.about{
+  display: table;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 20px;
+  line-height: 1.4;
+
+  h1{
+    font-size: 24px;
+    font-family: $futura;
+    text-transform: uppercase;
+
+    @include max-width(400px){
+      text-transform: none;
+    }
+  }
+
+  .social-icon{
+    @include transition(opacity 250ms ease);
+    margin-left: 10px;
+    opacity: 0.25;
+    display: inline-block;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  p{
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  h1, p{
+    width: 85%;
+    max-width: 470px;
+    margin: 0 auto;
+  }
+
+  .centered {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+// Photos tumblr
+// ==================================================================
+
+.photos{
+  width: 95%;
+  margin: 120px auto 0;
+  max-width: 800px;
+  text-align: center;
+
+  @include max-width($navBreakpoint){
+    margin-top: 0;
+  }
+
+  img{
+    max-height: 750px;
+    vertical-align: bottom;
+  }
+}
+
+.photo{
+  margin-bottom: 120px;
+}
+
+.photo-caption{
+  font-size: 13px;
+}
+
+#infinite_scroll_nav{
+  text-align: center;
+  margin: 30px 0;
+}
+
+#tumblr_controls{
+  @include transition(opacity 300ms ease);
+  position: fixed !important;
+  opacity: 0.4;
+
+  &:hover{
+    opacity: 1;
+  }
+}
+
+// Pocket 2012
+// ==================================================================
+
+.pocket-2012{
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+
+  .book-cover{
+    @include max-width(500px){
+      margin-top: 30px;
+    }
+
+    margin-top: 60px;
+    text-align: center;
+
+    img{
+      box-shadow: 0 2px 3px rgba(#000, 0.1);
+
+      @include min-width(500px){
+        max-width: 300px;
+      }
+    }
+  }
+}
+
+.book-buttons{
+  text-align: center;
+  margin: 30px auto;
+  border-bottom: 1px solid $lightGrey;
+  padding-bottom: 30px;
+
+  .book-dl-btn{
+    display: inline-block;
+    padding: 10px 5px 0;
+    font-size: 13px;
+  }
+}
+
+.book-info{
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 60px;
+}

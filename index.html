@@ -1,0 +1,37 @@
+{% include 'includes/header' %}
+
+<div id='home-intro'>Sawyer</div>
+
+<section class='portfolio'>
+  {% for post in posts %}
+    <div class='p-item-outer-wrap'>
+
+      <article class='portfolio-item-wrap'>
+        
+        {% for asset in post.assets %}
+          <div class='p-{{ post.meta.customClass }} p-{{ post.meta.customClass }}-{{forloop.index}} p-item{% if forloop.index == 1 %} is-front{% endif %}'>
+            <img src="{{asset.url}}" alt="{{filename}}">
+          </div>
+        {% endfor %}
+
+      </article>
+
+      <div class='p-info-wrap'>
+        <div class='p-info-table'>
+          <div class='p-info'>
+            {{ post.body }}
+            <p class='p-info-hide'>&times;</p>
+          </div>
+        </div>
+      </div>
+
+      {% if meta.link %}
+        <a class='p-permalink ss-icon' href='{{meta.link}}' target='_blank'>link</a>
+      {% endif %}
+
+      <div class='p-info-toggle ss-icon'>info</div>
+    </div>
+  {% endfor %}
+</section>
+
+{% include 'includes/footer' %}

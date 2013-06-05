@@ -1,0 +1,15 @@
+{% include 'includes/header' %}
+
+<section class="writing-list">
+  
+  {% for post in posts %}
+    <article>
+      <h1>
+        <a href="{{post.url}}">{{post.title}}</a>
+      </h1>
+    </article>
+  {% endfor %}
+  
+</section>
+
+{% include 'includes/footer' %}
