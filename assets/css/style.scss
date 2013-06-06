@@ -436,7 +436,7 @@ $navBreakpoint: 560px;
     }
   }
 
-  .p-pocket-2012{
+  .p-single{
     img{
       max-width: 400px;
     }
@@ -444,8 +444,12 @@ $navBreakpoint: 560px;
 
   // poster
   // +++++++++++++++++++++++++++++++++
+  .p-poster{
+    padding-top: 7%;
+  }
   .p-poster-1{
-    @include transform(translate(9%, -7%));
+    left: 9%;
+    top: -7%;
   }
 
   .p-poster-portrait{

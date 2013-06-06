@@ -47,7 +47,7 @@ $ ->
 
 			$container.find('.p-item').each ->
 				$item = $(this)
-				itemHeight = $item.height() + ($item.position().top)
+				itemHeight = $item.height() + $item.position().top + parseInt($item.css('marginTop'))
 
 				if itemHeight > containerHeight
 					containerHeight = Math.ceil(itemHeight)

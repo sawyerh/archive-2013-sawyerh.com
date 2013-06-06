@@ -451,15 +451,15 @@ a {
       max-width: 350px;
       margin: auto; }
 
-  .p-pocket-2012 img {
+  .p-single img {
     max-width: 400px; }
 
+  .p-poster {
+    padding-top: 7%; }
+
   .p-poster-1 {
-    -webkit-transform: translate(9%, -7%);
-    -moz-transform: translate(9%, -7%);
-    -ms-transform: translate(9%, -7%);
-    -o-transform: translate(9%, -7%);
-    transform: translate(9%, -7%); }
+    left: 9%;
+    top: -7%; }
 
   .p-poster-portrait {
     margin: 0 7%; }
